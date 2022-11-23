@@ -7,3 +7,6 @@ class Author(models.Model):
     last_name = models.CharField(max_length=64)
     # birthday_year = models.PositiveIntegerField()
     email = models.EmailField(max_length=70, blank=True, unique=True)
+
+    def __str__(self):
+        return self.user_name

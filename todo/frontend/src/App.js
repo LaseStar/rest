@@ -13,12 +13,14 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-        axios.get(url: 'http://127.0.0.1:8000/api/authors/').then(response => {
-            this.setState(
-                state:{
-                    'authors':response.date
-                }
-            )
+        axios.get('http://127.0.0.1:8000/api/authors')
+        .then(response => {
+            const authors = response.data
+                this.setState(
+                    {
+                        'authors':authors
+                    }
+                )
 
         }
         ).catch(error => console.log(error))
