@@ -2,6 +2,7 @@ from django.db import models
 from authors.models import Author
 
 
+
 class Project(models.Model):
     project_name = models.CharField(max_length=128)
     project_link = models.TextField()
@@ -17,3 +18,4 @@ class TODO(models.Model):
     todo_data_create = models.DateField()
     todo_data_update = models.DateField()
     todo_authors = models.ManyToManyField(Author)
+    todo_close = models.BooleanField(default=False)

@@ -17,8 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
-from authors.views import AuthorModelViewSet
-from notes.views import ProjectModelViewSet, TODOModelViewSet
+from authors.views import AuthorModelViewSet, AuthorAPIView
+from notes.views import ProjectModelViewSet, TODOModelViewSet, TODOAPIView
 
 
 router = DefaultRouter()
@@ -26,8 +26,13 @@ router.register('authors', AuthorModelViewSet)
 router.register('project', ProjectModelViewSet)
 router.register('todo', TODOModelViewSet)
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
-    path('api/', include(router.urls))
+    path('api/', include(router.urls)),
+    path('views/api-views-authors/', AuthorAPIView.as_view()),
+    path('views/api-views-authors/<int:pk>/', AuthorAPIView.as_view()),
+    path('views/api-views-todo/', TODOAPIView.as_view()),
+    path('views/api-views-todo/<int:pk>/', TODOAPIView.as_view()),
 ]
