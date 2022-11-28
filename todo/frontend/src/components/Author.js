@@ -3,15 +3,13 @@ import React from "react";
 
 
 const AuthorItem = ({author}) => {
-
-
     return (
         <tr>
             <td>
                 {author.user_name}
             </td>
             <td>
-                {author.fist_name}
+                {author.first_name}
             </td>
             <td>
                 {author.last_name}
@@ -24,14 +22,13 @@ const AuthorItem = ({author}) => {
 }
 
 const AuthorList = ({authors}) => {
-
     return (
         <table>
             <th>
-                Fist name
+                User name
             </th>
             <th>
-                Fist name
+                First name
             </th>
             <th>
                 Last name

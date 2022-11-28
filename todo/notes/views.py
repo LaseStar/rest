@@ -58,5 +58,3 @@ class TODOAPIView(APIView):
         todo = get_object_or_404(TODO.objects.all(), pk=pk)
         todo.todo_close = True
         return Response({"message": "TODO with id `{}` has benn closed".format(pk)}, status=204)
-
-

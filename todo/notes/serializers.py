@@ -5,7 +5,8 @@ from rest_framework.serializers import ModelSerializer
 class ProjectModelSerializer(ModelSerializer):
     class Meta:
         model = Project
-        fields = '__all__'
+        fields = ('project_name', 'project_link', 'project_authors')
+        # fields = '__all__'
 
 
 class TODOModelSerializer(ModelSerializer):

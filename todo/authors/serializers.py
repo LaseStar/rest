@@ -5,8 +5,7 @@ from rest_framework.serializers import ModelSerializer
 class AuthorModelSerializer(ModelSerializer):
     class Meta:
         model = Author
-        fields = ('user_name', 'first_name', 'last_name', 'email')
-        # fields = '__all__'
+        fields = '__all__'
 
     def update(self, instance, validated_data):
         instance.user_name = validated_data.get('user_name', instance.user_name)

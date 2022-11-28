@@ -23,7 +23,7 @@ from notes.views import ProjectModelViewSet, TODOModelViewSet, TODOAPIView
 
 router = DefaultRouter()
 router.register('authors', AuthorModelViewSet)
-router.register('project', ProjectModelViewSet)
+router.register('projects', ProjectModelViewSet)
 router.register('todo', TODOModelViewSet)
 
 
