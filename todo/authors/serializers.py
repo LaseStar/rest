@@ -15,3 +15,8 @@ class AuthorModelSerializer(ModelSerializer):
 
         instance.save()
         return instance
+
+class AuthorBaseModelSerializer(ModelSerializer):
+    class Meta:
+        model = Author
+        fields = ('user_name','is_superuser','is_staff',)

@@ -20,6 +20,10 @@ class AuthorModelViewSet(ModelViewSet):
     # def get_queryset(self):
     #     return Author.objects.get(id=1)
 
+    def get_serializer_class(self):
+        if self.request.version == 'v2':
+            return AuthorBaseModelSerializer
+        return AuthorModelSerializer
 
 class AuthorAPIView(APIView):
     renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
