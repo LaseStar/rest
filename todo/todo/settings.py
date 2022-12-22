@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     #main
+    'graphene_django',
     'rest_framework',
     'authors',
     'notes',
@@ -152,7 +153,11 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.BasicAuthentication',
-        'rest_framework.authentication.TokenAuthentication'
+        'rest_framework.authentication.TokenAuthentication',
     ],
     'DEFAULT_VERSIONING_CLASS':'rest_framework.versioning.QueryParameterVersioning',
+}
+
+GRAPHENE = {
+    'SCHEMA' : 'todo.schema.schema',
 }
