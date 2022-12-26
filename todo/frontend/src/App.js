@@ -106,6 +106,45 @@ class App extends React.Component {
     this.load_data()
     }
 
+  deleteProject(id) {
+    const headers = this.get_headers()
+    axios.delete(`http://127.0.0.1:8000/api/projects/${id}`, {headers, headers}).then(response => {
+        this.setState({projects: this.state.projects.filter((item)=>item.id !== id)})
+    }).catch(error => console.log(error))
+  }
+
+  deleteTODO(id) {
+    const headers = this.get_headers()
+    axios.delete(`http://127.0.0.1:8000/api/todo/${id}`, {headers, headers}).then(response => {
+        this.setState({todos: this.state.todos.filter((item)=>item.id !== id)})
+    }).catch(error => console.log(error))
+  }
+
+    createProject(name, project) {
+        const headers = this.get_headers()
+        const data = {name: name, link: link}
+        axios.post(`http://127.0.0.1:8000/api/projects/`, data, {headers, headers})
+            .then(response => {
+                let new_book = response.data
+                const author = this.state.authors.filter((item) => item.id ===
+        new_project.author)[0]
+            new_project.author = author
+            this.setState({projects: [...this.state.projects, new_project]})
+        }).catch(error => console.log(error))
+    }
+
+    createTodo(name, todo) {
+        const headers = this.get_headers()
+        const data = {name: name, link: link}
+        axios.post(`http://127.0.0.1:8000/api/todo/`, data, {headers, headers})
+            .then(response => {
+                let new_book = response.data
+                const author = this.state.authors.filter((item) => item.id ===
+        new_todo.author)[0]
+            new_project.author = author
+            this.setState({todos: [...this.state.todos, new_todo]})
+        }).catch(error => console.log(error))
+    }
 
   render() {
     return (
@@ -128,8 +167,14 @@ class App extends React.Component {
                 </nav>
                 <Routes>
                     <Route exact path='/' element={<AuthorList authors={this.state.authors}/>}/>
-                    <Route exact path='/projects' element={<ProjectList projects={this.state.projects}/>}/>
-                    <Route exact path='/todos' element={<TODOList todos={this.state.todos}/>}/>
+                    <Route exact path='/projects/create' component={() => <ProjectFrom />}/>
+                    <Route exact path='/projects' component={() => <ProjectList
+                    projects={this.state.projects} deleteProject={(id)=>this.deleteProject(id)} />} />
+//                    <Route exact path='/projects' element={<ProjectList projects={this.state.projects}/>}/>
+                  <Route exact path='/todo/create' component={() => <TodoForm />}/>
+                    <Route exact path='/todo' component={() => <TODOList
+                    todos={this.state.todos} deleteTODO={(id)=>this.deleteTODO(id)} />} />
+//                    <Route exact path='/todos' element={<TODOList todos={this.state.todos}/>}/>
                     <Route exact path='/login' element={<LoginForm get_token={(username, password) =>this.get_token(username, password)}/>}/>
                 </Routes>
             </BrowserRouter>
